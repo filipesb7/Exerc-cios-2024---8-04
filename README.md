@@ -1693,7 +1693,7 @@ int main() {
 
 Comando de Controle de Desvio e Vetores Escreva um programa que preencha um
 vetor com 10 números inteiros e depois imprima apenas os números positivos.
-Manipulação
+
 
 #include <stdio.h>
 
