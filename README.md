@@ -1244,3 +1244,477 @@ int main() {
     return 0;
 }
 
+
+
+Exercicios de revisao 07_05
+
+Operadores de entrada e saída de dados Escreva um programa que leia dois
+números inteiros e imprima a soma deles.
+
+#include <stdio.h>
+
+int main() {
+    int num1, num2, soma;
+
+    // Solicita ao usuário para inserir o primeiro número
+    printf("Digite o primeiro número inteiro: ");
+    scanf("%d", &num1);
+
+    // Solicita ao usuário para inserir o segundo número
+    printf("Digite o segundo número inteiro: ");
+    scanf("%d", &num2);
+
+    // Calcula a soma dos dois números
+    soma = num1 + num2;
+
+    // Imprime a soma
+    printf("A soma de %d e %d é: %d\n", num1, num2, soma);
+
+    return 0;
+}
+
+
+Variáveis e Operadores aritméticos Crie um programa que calcule a média aritmética
+de três notas e determine se o aluno está aprovado (média >= 6).
+
+#include <stdio.h>
+
+int main() {
+    float nota1, nota2, nota3, media;
+
+    // Solicita ao usuário para inserir as três notas
+    printf("Digite a primeira nota: ");
+    scanf("%f", &nota1);
+
+    printf("Digite a segunda nota: ");
+    scanf("%f", &nota2);
+
+    printf("Digite a terceira nota: ");
+    scanf("%f", &nota3);
+
+    // Calcula a média aritmética
+    media = (nota1 + nota2 + nota3) / 3;
+
+    // Verifica se a média é maior ou igual a 6
+    if (media >= 6) {
+        printf("Parabéns! Você está aprovado com média %.2f.\n", media);
+    } else {
+        printf("Infelizmente, sua média é %.2f e você está reprovado.\n", media);
+    }
+
+    return 0;
+}
+
+
+Estruturas de decisão e Operadores lógicos Escreva um programa que leia um
+número e informe se ele é positivo, negativo ou zero.
+
+#include <stdio.h>
+
+int main() {
+    int numero;
+
+    // Solicita ao usuário para inserir um número
+    printf("Digite um número: ");
+    scanf("%d", &numero);
+
+    // Verifica se o número é positivo, negativo ou zero
+    if (numero > 0) {
+        printf("O número %d é positivo.\n", numero);
+    } else if (numero < 0) {
+        printf("O número %d é negativo.\n", numero);
+    } else {
+        printf("O número é zero.\n");
+    }
+
+    return 0;
+}
+
+
+Switch case, While, do while, if, if else, For, Comando de controle de desvio e
+Vetores Desenvolva um programa que utilize um menu para realizar operações em um
+vetor de inteiros. As operações devem incluir inserção, remoção, exibição e busca de
+elementos.
+
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+int main() {
+    int vetor[MAX_SIZE];
+    int tamanho = 0;
+    int escolha, elemento, i, posicao;
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Inserir elemento\n");
+        printf("2. Remover elemento\n");
+        printf("3. Exibir vetor\n");
+        printf("4. Buscar elemento\n");
+        printf("5. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &escolha);
+
+        switch (escolha) {
+            case 1:
+                if (tamanho < MAX_SIZE) {
+                    printf("Digite o elemento a ser inserido: ");
+                    scanf("%d", &vetor[tamanho]);
+                    tamanho++;
+                } else {
+                    printf("O vetor está cheio.\n");
+                }
+                break;
+
+            case 2:
+                if (tamanho > 0) {
+                    printf("Digite a posição do elemento a ser removido (de 1 a %d): ", tamanho);
+                    scanf("%d", &posicao);
+                    if (posicao >= 1 && posicao <= tamanho) {
+                        for (i = posicao - 1; i < tamanho - 1; i++) {
+                            vetor[i] = vetor[i + 1];
+                        }
+                        tamanho--;
+                    } else {
+                        printf("Posição inválida.\n");
+                    }
+                } else {
+                    printf("O vetor está vazio.\n");
+                }
+                break;
+
+            case 3:
+                if (tamanho > 0) {
+                    printf("Vetor: ");
+                    for (i = 0; i < tamanho; i++) {
+                        printf("%d ", vetor[i]);
+                    }
+                    printf("\n");
+                } else {
+                    printf("O vetor está vazio.\n");
+                }
+                break;
+
+            case 4:
+                if (tamanho > 0) {
+                    printf("Digite o elemento a ser buscado: ");
+                    scanf("%d", &elemento);
+                    for (i = 0; i < tamanho; i++) {
+                        if (vetor[i] == elemento) {
+                            printf("Elemento encontrado na posição %d.\n", i + 1);
+                            break;
+                        }
+                    }
+                    if (i == tamanho) {
+                        printf("Elemento não encontrado no vetor.\n");
+                    }
+                } else {
+                    printf("O vetor está vazio.\n");
+                }
+                break;
+
+            case 5:
+                printf("Encerrando o programa.\n");
+                break;
+
+            default:
+                printf("Opção inválida. Escolha novamente.\n");
+                break;
+        }
+    } while (escolha != 5);
+
+    return 0;
+}
+
+
+Matrizes (Arrays Bidimensionais) Crie um programa que leia uma matriz quadrada de
+ordem n (onde n é lido pelo usuário) e calcule a soma dos elementos da diagonal
+principal
+
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+int main() {
+    int matriz[MAX_SIZE][MAX_SIZE];
+    int n, i, j, soma = 0;
+
+    // Solicita ao usuário a ordem da matriz quadrada
+    printf("Digite a ordem da matriz quadrada: ");
+    scanf("%d", &n);
+
+    // Solicita ao usuário para inserir os elementos da matriz
+    printf("Digite os elementos da matriz:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Calcula a soma dos elementos da diagonal principal
+    for (i = 0; i < n; i++) {
+        soma += matriz[i][i];
+    }
+
+    // Imprime a soma dos elementos da diagonal principal
+    printf("A soma dos elementos da diagonal principal é: %d\n", soma);
+
+    return 0;
+}
+
+
+Strings e Funções de Biblioteca Implemente um programa que leia uma string (nome)
+e exiba o comprimento da string (número de caracteres).
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGTH 100
+
+int main() {
+    char nome[MAX_LENGTH];
+
+    // Solicita ao usuário que insira uma string
+    printf("Digite uma string (nome): ");
+    scanf("%s", nome);
+
+    // Calcula o comprimento da string usando a função strlen da biblioteca string.h
+    int comprimento = strlen(nome);
+
+    // Exibe o comprimento da string
+    printf("O comprimento da string '%s' é: %d\n", nome, comprimento);
+
+    return 0;
+}
+
+
+Operadores de Entrada e Saída de Dados Escreva um programa que leia o nome e a
+idade de uma pessoa e depois imprima esses dados.
+
+#include <stdio.h>
+
+int main() {
+    char nome[100];
+    int idade;
+
+    // Solicita ao usuário que insira o nome
+    printf("Digite o seu nome: ");
+    fgets(nome, sizeof(nome), stdin);
+
+    // Solicita ao usuário que insira a idade
+    printf("Digite a sua idade: ");
+    scanf("%d", &idade);
+
+    // Imprime os dados lidos
+    printf("Nome: %s", nome);
+    printf("Idade: %d\n", idade);
+
+    return 0;
+}
+
+
+Variáveis e Operadores Aritméticos Crie um programa que leia dois números e
+imprima o resultado da multiplicação entre eles.
+
+#include <stdio.h>
+
+int main() {
+    int num1, num2, resultado;
+
+    // Solicita ao usuário que insira os dois números
+    printf("Digite o primeiro número: ");
+    scanf("%d", &num1);
+
+    printf("Digite o segundo número: ");
+    scanf("%d", &num2);
+
+    // Calcula o resultado da multiplicação
+    resultado = num1 * num2;
+
+    // Imprime o resultado da multiplicação
+    printf("O resultado da multiplicação é: %d\n", resultado);
+
+    return 0;
+}
+
+
+Atribuições Aritméticas Escreva um programa que calcule o quadrado de um número
+usando atribuição aritmética
+
+#include <stdio.h>
+
+int main() {
+    int numero, quadrado;
+
+    // Solicita ao usuário que insira o número
+    printf("Digite um número: ");
+    scanf("%d", &numero);
+
+    // Calcula o quadrado do número usando atribuição aritmética
+    quadrado = numero * numero;
+
+    // Imprime o resultado
+    printf("O quadrado de %d é: %d\n", numero, quadrado);
+
+    return 0;
+}
+
+
+Estruturas de Decisão e Operadores Lógicos Implemente um programa que
+determine se um ano é bissexto ou não
+
+#include <stdio.h>
+
+int main() {
+    int ano;
+
+    // Solicita ao usuário que insira o ano
+    printf("Digite um ano: ");
+    scanf("%d", &ano);
+
+    // Verifica se o ano é bissexto
+    if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) {
+        printf("%d é um ano bissexto.\n", ano);
+    } else {
+        printf("%d não é um ano bissexto.\n", ano);
+    }
+
+    return 0;
+}
+
+
+Switch Case Desenvolva um programa que leia um número de 1 a 7 e imprima o dia
+da semana correspondente, sendo 1 para Domingo
+
+#include <stdio.h>
+
+int main() {
+    int numero;
+
+    // Solicita ao usuário que insira um número de 1 a 7
+    printf("Digite um número de 1 a 7: ");
+    scanf("%d", &numero);
+
+    // Verifica o número e imprime o dia da semana correspondente
+    switch (numero) {
+        case 1:
+            printf("Domingo\n");
+            break;
+        case 2:
+            printf("Segunda-feira\n");
+            break;
+        case 3:
+            printf("Terça-feira\n");
+            break;
+        case 4:
+            printf("Quarta-feira\n");
+            break;
+        case 5:
+            printf("Quinta-feira\n");
+            break;
+        case 6:
+            printf("Sexta-feira\n");
+            break;
+        case 7:
+            printf("Sábado\n");
+            break;
+        default:
+            printf("Número inválido! Por favor, insira um número de 1 a 7.\n");
+            break;
+    }
+
+    return 0;
+}
+
+
+While Escreva um programa que imprima todos os números pares de 0 até 100
+
+#include <stdio.h>
+
+int main() {
+    int numero = 0;
+
+    // Imprime todos os números pares de 0 até 100
+    while (numero <= 100) {
+        printf("%d\n", numero);
+        numero += 2; // Incrementa o número em 2 para obter o próximo número par
+    }
+
+    return 0;
+}
+
+
+Do While Implemente um programa que leia números do usuário até que ele digite 0, e
+então imprima a soma de todos os números digitados.
+
+#include <stdio.h>
+
+int main() {
+    int numero, soma = 0;
+
+    // Loop para ler números do usuário
+    do {
+        // Solicita ao usuário que insira um número
+        printf("Digite um número (digite 0 para encerrar): ");
+        scanf("%d", &numero);
+        
+        // Adiciona o número à soma
+        soma += numero;
+    } while (numero != 0);
+
+    // Imprime a soma dos números digitados
+    printf("A soma dos números digitados é: %d\n", soma);
+
+    return 0;
+}
+
+
+For Crie um programa que leia um número inteiro e imprima a tabuada desse número.
+
+#include <stdio.h>
+
+int main() {
+    int numero, i;
+
+    // Solicita ao usuário que insira um número
+    printf("Digite um número inteiro: ");
+    scanf("%d", &numero);
+
+    // Imprime a tabuada do número fornecido
+    printf("Tabuada do %d:\n", numero);
+    for (i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\n", numero, i, numero * i);
+    }
+
+    return 0;
+}
+
+
+Comando de Controle de Desvio e Vetores Escreva um programa que preencha um
+vetor com 10 números inteiros e depois imprima apenas os números positivos.
+Manipulação
+
+#include <stdio.h>
+
+int main() {
+    int vetor[10];
+    int i;
+
+    // Preenche o vetor com números fornecidos pelo usuário
+    printf("Digite 10 números inteiros:\n");
+    for (i = 0; i < 10; i++) {
+        printf("Número %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    // Imprime apenas os números positivos do vetor
+    printf("Números positivos:\n");
+    for (i = 0; i < 10; i++) {
+        if (vetor[i] > 0) {
+            printf("%d\n", vetor[i]);
+        }
+    }
+
+    return 0;
+}
